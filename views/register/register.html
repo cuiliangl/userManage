@@ -1,0 +1,49 @@
+{{extend '../layout.html'}}
+
+{{block 'content'}}
+<div class="main">
+    <form class="form-group col-md-3" id="register-form">
+        <div style="display: none" id="warn-message" class="alert alert-warning" role="alert">
+            This is a warning alert—check it out!
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputUsername">UserName</label>
+            <input type="text" name="nickName" class="form-control" id="exampleInputUsername" placeholder="UserName">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button id="submit" class="btn  btn-success">注册</button>
+    </form>
+</div>
+
+<script>
+
+    $("#submit").on('click', (event) => {
+        event.preventDefault();
+        
+        // 获取表单数据
+        let data = $('#register-form').serialize();
+
+        $.ajax({
+            url: '/register',
+            method: 'post',
+            data,
+            dataType:"json",
+            success: ({code, msg}) => {
+                if (code) {
+                    $("#warn-message").show().text(msg);
+                }
+                else {
+                    window.location.href = '/';
+                }
+            } 
+        })
+    })
+</script>
+{{/block}}
