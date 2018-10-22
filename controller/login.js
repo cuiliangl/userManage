@@ -14,7 +14,7 @@ module.exports = (req, res) => {
 
     UserInfo.findOne(req.body, (err, data) => {
         if (err) return res.status(500).json({
-            code: 0,
+            code: 500,
             msg: '服务器错误'
         })
 

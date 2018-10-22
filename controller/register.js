@@ -35,7 +35,7 @@ module.exports = (req, res) => {
         req.body.password = md5(md5(password) + 'userManage');
         new UserInfo(req.body).save((err, data) => {
             if (err) return res.status(500).json({
-                code: 0,
+                code: 500,
                 msg: '数据写入失败'
             });
 
