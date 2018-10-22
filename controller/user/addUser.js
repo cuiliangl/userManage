@@ -7,8 +7,6 @@
 const {UserManage} = require('../../database');
 
 module.exports = (req, res) => {
-    console.log(req.body);
-
     new UserManage(req.body).save((err, data) => {
         if (err) return res.status(500).json({
             code: 500,

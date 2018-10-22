@@ -13,10 +13,9 @@ module.exports = (req, res) => {
             msg: '服务端错误'
         })
 
-        console.log(data);
-
         res.render('user/list.html', {
-            userList: data
+            userList: data,
+            userInfo: req.session.user
         });
     })
 }

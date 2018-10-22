@@ -16,9 +16,13 @@ const addUser = require('../controller/user/addUser');
 const renderEdit = require('../controller/user/renderEdit');
 const editInfo = require('../controller/user/editInfo');
 const deleteUser = require('../controller/user/deleteUser');
+const signOut = require('../controller/signOut');
 
 router
     .get('/', (req, res) => {
+        if (!req.session.user) {
+            return res.redirect('/login');
+        }
         userList(req, res);
     })
     .get('/login', (req, res) => {
@@ -32,6 +36,9 @@ router
     })
     .post('/register', (req, res) => {
         register(req, res);
+    })
+    .get('/signout', (req, res) => {
+        signOut(req, res);
     })
     .get('/user/add', (req, res) => {
         res.render('user/add.html');

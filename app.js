@@ -10,6 +10,7 @@ const path = require('path');
 
 // 中间件
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 const app = express();
 
@@ -32,6 +33,17 @@ app.set('view options', {
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+
+// session 配置
+app.use(session({
+    // 配置加密字符串，会在原有加密的基础上，拼接起来加密，目的是防止客户端恶意篡改，提高安全性
+    secret: 'keyboard cat',
+    resave: false,
+    // 无论是否需要 session，默认给客户端分配session，如果设置成false，只有设置了session的时候才会给客户端分配session
+    saveUninitialized: true
+}))
+
+// session默认是内存存储的，服务器一旦重启就会丢失，真正的生产环境session是持久化存储。
 
 
 // 一定要放在最后
