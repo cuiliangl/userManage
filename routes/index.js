@@ -41,7 +41,9 @@ router
         signOut(req, res);
     })
     .get('/user/add', (req, res) => {
-        res.render('user/add.html');
+        res.render('user/add.html', {
+            user: req.session.user
+        });
     })
     .post('/user/add', (req, res) => {
         addUser(req, res);

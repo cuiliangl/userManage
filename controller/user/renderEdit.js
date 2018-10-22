@@ -14,7 +14,8 @@ module.exports = (req, res) => {
         })
 
         res.render('user/edit.html', {
-            userInfo: data
+            userInfo: data,
+            user: req.session.user
         })
     })
 }

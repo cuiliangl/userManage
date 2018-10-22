@@ -49,3 +49,8 @@ body {
     margin: 50px auto;
     border-radius: 10px;
 }
+
+.oops {
+    text-align: center;
+    margin-top: 200px;
+}

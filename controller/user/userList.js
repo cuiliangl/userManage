@@ -15,7 +15,7 @@ module.exports = (req, res) => {
 
         res.render('user/list.html', {
             userList: data,
-            userInfo: req.session.user
+            user: req.session.user
         });
     })
 }
